@@ -1,0 +1,41 @@
+# 프로메테우스는 기본 포트가 9090이다.
+# actuator가 사용하는 설정, 엑츄에이터의 모든 기능의 엔드포인트들을 웹 환경에 노출하겠다.
+management:
+  # 애플리케이션 정보
+  # 위치 주의, 엔드포인트 하위가 아니다.
+  info:
+    java:
+      enabled: true
+    os:
+      enabled: true
+    env:
+      enabled: true
+  # actuator 포트를 9292로 정해서 볼 것이다. 8080으로는볼 수 없다.
+#  server:
+#    port: 9292
+  endpoint:
+    shutdown:
+      # 위험하니까 기본으로는 비활성화다.
+      # 주의해서 사용하자
+      enabled: true
+    # 서버가 응답을 하는지
+    # 데이터베이스가 살아있는지
+    health:
+      # 상태 정보만 간략하게 노출한다.
+      show-components: always
+  #      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+##########
+info:
+  app:
+    name: hello-actuator
+    company: yh
+# POST로 http://localhost:8080/actuator/loggers/hello.controller에
+# json 바디에 "configuredLevel": "TRACE"를 넣으면 로거 레벨이 "TRACE"로 변경된다.
+logging:
+  level:
+    hello.controller: debug
