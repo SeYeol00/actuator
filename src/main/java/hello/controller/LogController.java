@@ -19,4 +19,7 @@ public class LogController {
         log.error("error log");
         return "ok";
     }
+    
+    // 프로메테우스 쿼리 정리
+    // 프로메테우스 설명한 김영한 pdf 확인하기
 }
